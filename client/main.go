@@ -26,14 +26,14 @@ func main() {
 	}
 	defer client.Close()
 
-	fmt.Println("✅ Connected to server successfully!")
+	fmt.Println("Connected to server successfully!")
 	fmt.Println()
-	fmt.Println("╔════════════════════════════════════════╗")
-	fmt.Println("║      Remote Shell RPC Client          ║")
-	fmt.Println("╚════════════════════════════════════════╝")
+	fmt.Println("")
+	fmt.Println("      Remote Shell RPC Client          ")
+	fmt.Println("")
 	fmt.Println("Type commands to execute on remote server")
 	fmt.Println("Type 'exit' or 'quit' to disconnect")
-	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	fmt.Println("")
 	fmt.Println()
 
 	// Interactive command loop
@@ -51,7 +51,7 @@ func main() {
 
 		// Check for exit commands
 		if command == "exit" || command == "quit" {
-			fmt.Println("👋 Disconnecting from server...")
+			fmt.Println(" Disconnecting from server...")
 			break
 		}
 
@@ -67,13 +67,13 @@ func main() {
 		// Call RPC method
 		err := client.Call(shared.MethodName, req, res)
 		if err != nil {
-			fmt.Printf("❌ RPC Error: %v\n\n", err)
+			fmt.Printf(" RPC Error: %v\n\n", err)
 			continue
 		}
 
 		// Display results
 		if res.Error != "" {
-			fmt.Printf("❌ Execution Error: %s\n", res.Error)
+			fmt.Printf(" Execution Error: %s\n", res.Error)
 		}
 
 		if res.Stdout != "" {
@@ -81,7 +81,7 @@ func main() {
 		}
 
 		if res.Stderr != "" {
-			fmt.Printf("⚠️  Error Output:\n%s", res.Stderr)
+			fmt.Printf("  Error Output:\n%s", res.Stderr)
 		}
 
 		fmt.Printf("Exit Code: %d\n", res.ExitCode)

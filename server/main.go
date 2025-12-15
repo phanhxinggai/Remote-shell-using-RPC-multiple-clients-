@@ -70,11 +70,11 @@ func main() {
 	}
 	defer listener.Close()
 
-	fmt.Println("╔════════════════════════════════════════╗")
-	fmt.Println("║   Remote Shell RPC Server Started     ║")
-	fmt.Println("╚════════════════════════════════════════╝")
-	fmt.Println("📡 Listening on port 8080...")
-	fmt.Println("🔌 Waiting for client connections...")
+	fmt.Println("")
+	fmt.Println("   Remote Shell RPC Server Started     ")
+	fmt.Println("")
+	fmt.Println(" Listening on port 8080...")
+	fmt.Println(" Waiting for client connections...")
 	fmt.Println()
 
 	// Accept and handle client connections
@@ -85,7 +85,7 @@ func main() {
 			continue
 		}
 
-		log.Printf("✅ New client connected: %s", conn.RemoteAddr())
+		log.Printf("New client connected: %s", conn.RemoteAddr())
 
 		// Handle each client in a separate goroutine
 		go rpc.ServeConn(conn)
