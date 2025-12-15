@@ -103,7 +103,7 @@ drwxr-xr-x 3 user user 4096 Dec  6 13:55 ..
 Exit Code: 0
 
 remote-shell> exit
-👋 Disconnecting from server...
+Disconnecting from server...
 ```
 
 ##  Testing Multiple Clients
