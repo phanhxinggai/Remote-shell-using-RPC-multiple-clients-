@@ -1,6 +1,6 @@
 # Remote Shell RPC - Testing Guide
 
-## 📋 Overview
+## Overview
 
 This guide provides step-by-step instructions to test the Remote Shell RPC system with multiple clients.
 
@@ -11,7 +11,7 @@ This guide provides step-by-step instructions to test the Remote Shell RPC syste
 
 ---
 
-## 🔧 Prerequisites
+## Prerequisites
 
 **Install Go:**
 1. Download from: https://go.dev/dl/
@@ -21,7 +21,7 @@ This guide provides step-by-step instructions to test the Remote Shell RPC syste
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Step 1: Build the Project
 
@@ -53,9 +53,9 @@ build.bat
 
 ---
 
-## 🧪 Test Scenarios
+##  Test Scenarios
 
-### ✅ Test 1: Single Client Connection
+###  Test 1: Single Client Connection
 
 **Purpose:** Verify basic RPC functionality
 
@@ -69,11 +69,11 @@ go run main.go
 
 Expected output:
 ```
-╔════════════════════════════════════════╗
-║   Remote Shell RPC Server Started     ║
-╚════════════════════════════════════════╝
-📡 Listening on port 8080...
-🔌 Waiting for client connections...
+
+   Remote Shell RPC Server Started     
+
+Listening on port 8080...
+Waiting for client connections...
 ```
 
 **Terminal 2 - Start Client:**
@@ -84,12 +84,12 @@ go run main.go
 
 Expected output:
 ```
-🔌 Connecting to server at localhost:8080...
-✅ Connected to server successfully!
+Connecting to server at localhost:8080...
+Connected to server successfully!
 
-╔════════════════════════════════════════╗
-║      Remote Shell RPC Client          ║
-╚════════════════════════════════════════╝
+
+      Remote Shell RPC Client          
+
 Type commands to execute on remote server
 Type 'exit' or 'quit' to disconnect
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -133,11 +133,11 @@ remote-shell> del test.txt
 remote-shell> exit
 ```
 
-**Expected Result:** ✅ All commands execute successfully and return correct output
+**Expected Result:** All commands execute successfully and return correct output
 
 ---
 
-### ✅ Test 2: Multiple Concurrent Clients
+###  Test 2: Multiple Concurrent Clients
 
 **Purpose:** Verify server handles multiple clients simultaneously via RPC
 
@@ -194,22 +194,22 @@ remote-shell> dir
 ```
 
 **Expected Result:** 
-- ✅ Server shows 4 client connections
-- ✅ All clients can execute commands simultaneously
-- ✅ No client blocks another client
-- ✅ Each client gets correct output
+-  Server shows 4 client connections
+-  All clients can execute commands simultaneously
+-  No client blocks another client
+-  Each client gets correct output
 
 **Server should show:**
 ```
-✅ New client connected: 127.0.0.1:xxxxx
-✅ New client connected: 127.0.0.1:xxxxx
-✅ New client connected: 127.0.0.1:xxxxx
-✅ New client connected: 127.0.0.1:xxxxx
+ New client connected: 127.0.0.1:xxxxx
+ New client connected: 127.0.0.1:xxxxx
+ New client connected: 127.0.0.1:xxxxx
+ New client connected: 127.0.0.1:xxxxx
 ```
 
 ---
 
-### ✅ Test 3: Error Handling
+###  Test 3: Error Handling
 
 **Purpose:** Verify RPC error handling for invalid commands
 
@@ -218,28 +218,28 @@ remote-shell> dir
 ```bash
 # Test 3.1: Invalid command
 remote-shell> invalidcommand123
-⚠️  Error Output:
+  Error Output:
 'invalidcommand123' is not recognized as an internal or external command...
 Exit Code: 1
 
 # Test 3.2: Command with syntax error
 remote-shell> dir /?/?/?
-⚠️  Error Output:
+  Error Output:
 [Error message]
 Exit Code: 1
 
 # Test 3.3: Access denied
 remote-shell> del C:\Windows\System32\kernel32.dll
-⚠️  Error Output:
+  Error Output:
 Access is denied.
 Exit Code: 1
 ```
 
-**Expected Result:** ✅ Server handles errors gracefully, returns error messages via RPC
+**Expected Result:**  Server handles errors gracefully, returns error messages via RPC
 
 ---
 
-### ✅ Test 4: Network Connection Test
+###  Test 4: Network Connection Test
 
 **Purpose:** Test RPC connection to remote server
 
@@ -249,11 +249,11 @@ cd client
 go run main.go 192.168.1.100:8080
 ```
 
-**Expected Result:** ✅ Client connects to server at specified address via RPC
+**Expected Result:**  Client connects to server at specified address via RPC
 
 ---
 
-### ✅ Test 5: Long-Running Commands
+###  Test 5: Long-Running Commands
 
 **Purpose:** Test RPC with commands that take time
 
@@ -268,11 +268,11 @@ remote-shell> dir C:\ /s /b | find /c ":"
 remote-shell> timeout /t 5
 ```
 
-**Expected Result:** ✅ RPC waits for command completion, returns full output
+**Expected Result:**  RPC waits for command completion, returns full output
 
 ---
 
-### ✅ Test 6: Special Characters & Quotes
+###  Test 6: Special Characters & Quotes
 
 **Purpose:** Test RPC marshaling with special characters
 
@@ -293,11 +293,11 @@ remote-shell> echo test > output.txt & type output.txt
 remote-shell> echo First && echo Second
 ```
 
-**Expected Result:** ✅ All special characters handled correctly by RPC
+**Expected Result:**  All special characters handled correctly by RPC
 
 ---
 
-## 📊 Performance Testing
+##  Performance Testing
 
 ### Load Test: 10 Concurrent Clients
 
@@ -331,21 +331,21 @@ remote-shell> date /t
 
 ---
 
-## 🎯 Verification Checklist
+##  Verification Checklist
 
 After testing, verify:
 
-- [ ] ✅ Server starts on port 8080
-- [ ] ✅ Client connects to server successfully (RPC connection)
-- [ ] ✅ Commands execute and return correct output (RPC call works)
-- [ ] ✅ Multiple clients connect simultaneously (concurrent RPC handling)
-- [ ] ✅ Error messages are returned properly (RPC error handling)
-- [ ] ✅ Exit command disconnects client cleanly (RPC connection close)
-- [ ] ✅ Server continues running after client disconnects (RPC server stability)
+- [ ]  Server starts on port 8080
+- [ ]  Client connects to server successfully (RPC connection)
+- [ ]  Commands execute and return correct output (RPC call works)
+- [ ]  Multiple clients connect simultaneously (concurrent RPC handling)
+- [ ]  Error messages are returned properly (RPC error handling)
+- [ ]  Exit command disconnects client cleanly (RPC connection close)
+- [ ]  Server continues running after client disconnects (RPC server stability)
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Error: "go: command not found"
 **Solution:** Install Go from https://go.dev/dl/ and restart terminal
@@ -367,7 +367,7 @@ go mod tidy
 
 ---
 
-## 📝 Test Report Template
+##  Test Report Template
 
 After testing, document your results:
 
@@ -406,7 +406,7 @@ After testing, document your results:
 
 ---
 
-## 🎓 Understanding the RPC Architecture
+##  Understanding the RPC Architecture
 
 **What happens when you type a command:**
 
@@ -421,14 +421,14 @@ After testing, document your results:
 9. **Client:** Displays output to user
 
 **This is true RPC because:**
-- ✅ Client calls remote procedure (ExecuteCommand) as if it's local
-- ✅ Marshaling/Unmarshaling handled automatically by `net/rpc`
-- ✅ Network communication abstracted away
-- ✅ Server executes and returns result transparently
+-  Client calls remote procedure (ExecuteCommand) as if it's local
+-  Marshaling/Unmarshaling handled automatically by `net/rpc`
+-  Network communication abstracted away
+-  Server executes and returns result transparently
 
 ---
 
-## 📚 Additional Resources
+##  Additional Resources
 
 - Go RPC Documentation: https://pkg.go.dev/net/rpc
 - Project README: `README.md`
@@ -436,7 +436,3 @@ After testing, document your results:
 - Technical Report: `remote-shell-rpc-report.tex`
 
 ---
-
-**Happy Testing! 🚀**
-
-If you encounter any issues, check the troubleshooting section or review the server logs for error messages.
